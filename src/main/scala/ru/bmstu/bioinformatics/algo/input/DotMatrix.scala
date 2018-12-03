@@ -1,7 +1,6 @@
 package main.scala.ru.bmstu.bioinformatics.algo.input
 
-class DotMatrix(val m: Array[Array[Boolean]]) {
-    def rowNum: Int = m.length
-    def colNum: Int = m(0).length
-    def get(rowInd: Int, colInd: Int): Boolean = m(rowInd)(colInd)
+class DotMatrix(val m: Map[(Int, Int), Int]) {
+    def get(rowInd: Int, colInd: Int): Int = m.getOrElse((rowInd, colInd), 0)
+    def dotIterator: Iterator[((Int, Int), Int)] = m.iterator
 }

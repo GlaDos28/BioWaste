@@ -1,7 +1,7 @@
 package main.scala.ru.bmstu.bioinformatics.algo.output
 
-case class AlignResult(score: Int)
+case class AlignResult(score: Int, table: Option[String])
 
 object AlignResult {
-    def fromStripAligns(aligns: List[Int]): AlignResult = AlignResult(aligns.max)
+    def fromStripAligns(aligns: List[AlignResult]): AlignResult = aligns.maxBy(_.score)
 }

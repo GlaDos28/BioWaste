@@ -34,14 +34,12 @@ class DiagSum(val iLen: Int, val jLen: Int, k: Int, val data: collection.mutable
 }
 
 object DiagSum {
-    def fromDotMatrix(dm: DotMatrix, k: Int): DiagSum = {
-        val diagSum = new DiagSum(dm.rowNum, dm.colNum, k)
+    def fromDotMatrix(dm: DotMatrix, rowNum: Int, colNum: Int, k: Int): DiagSum = {
+        val diagSum = new DiagSum(rowNum, colNum, k)
 
-        for {
-            i <- 0 to (dm.rowNum - k)
-            j <- 0 to (dm.colNum - k)
-            if dm.get(i, j)
-        } diagSum.inc(i - j)
+        for (el <- dm.dotIterator) {
+            diagSum.inc(el._1._1 - el._1._2)
+        }
 
         diagSum
     }
